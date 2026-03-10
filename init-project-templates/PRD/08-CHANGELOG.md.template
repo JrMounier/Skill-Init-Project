@@ -1,0 +1,39 @@
+# {{PROJECT_NAME}} — Changelog
+
+> Journal des changements — Format [Keep a Changelog](https://keepachangelog.com/)
+
+---
+
+## [v0.1.0] - {{DATE}}
+
+### Added
+
+- Initialisation du projet avec `/init-project`
+- Structure PRD (10 documents)
+- Configuration Claude Code (settings, hooks, CLAUDE.md)
+- Configuration Git (.gitignore, conventions)
+
+---
+
+<!--
+## [vX.Y.Z] - YYYY-MM-DD
+
+### Added
+- [Nouvelles fonctionnalites]
+
+### Changed
+- [Modifications de fonctionnalites existantes]
+
+### Fixed
+- [Corrections de bugs]
+
+### Removed
+- [Fonctionnalites supprimees]
+
+### Security
+- [Corrections de vulnerabilites]
+-->
+
+---
+
+> **Instruction Claude** : Apres chaque commit significatif ou merge de feature, ajouter une entree ici. Grouper par version. Utiliser les categories Added/Changed/Fixed/Removed/Security.

@@ -1,0 +1,51 @@
+# {{PROJECT_NAME}} — Backlog
+
+> Derniere mise a jour : {{DATE}}
+
+---
+
+## Must Have (MVP)
+
+| ID | Tache | Feature | Effort | Statut | Assignation |
+|----|-------|---------|--------|--------|-------------|
+| B-001 | | F-001 | S/M/L/XL | todo | |
+| B-002 | | F-001 | S/M/L/XL | todo | |
+
+## Should Have
+
+| ID | Tache | Feature | Effort | Statut | Assignation |
+|----|-------|---------|--------|--------|-------------|
+| B-010 | | F-003 | S/M/L/XL | todo | |
+
+## Could Have
+
+| ID | Tache | Feature | Effort | Statut | Assignation |
+|----|-------|---------|--------|--------|-------------|
+| B-020 | | F-004 | S/M/L/XL | todo | |
+
+## Won't Have (cette version)
+
+| ID | Tache | Raison |
+|----|-------|--------|
+| | | |
+
+---
+
+## Legende effort
+
+| Taille | Estimation |
+|--------|------------|
+| S | < 2h |
+| M | 2-4h |
+| L | 4-8h (1 jour) |
+| XL | > 1 jour |
+
+## Legende statut
+
+| Statut | Description |
+|--------|-------------|
+| `todo` | A faire |
+| `in-progress` | En cours |
+| `review` | En review |
+| `done` | Termine |
+| `blocked` | Bloque (preciser raison) |

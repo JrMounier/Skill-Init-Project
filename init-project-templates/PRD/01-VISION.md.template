@@ -1,0 +1,52 @@
+# {{PROJECT_NAME}} — Vision Produit
+
+> Derniere mise a jour : {{DATE}}
+
+---
+
+## Problem Statement
+
+<!-- Quel probleme ce projet resout-il ? Pour qui ? -->
+
+{{PROJECT_DESCRIPTION}}
+
+## Objectifs
+
+<!-- Objectifs SMART : Specifiques, Mesurables, Atteignables, Realistes, Temporels -->
+
+| # | Objectif | Mesure de succes | Echeance |
+|---|----------|-----------------|----------|
+| 1 | | | |
+| 2 | | | |
+| 3 | | | |
+
+## Proposition de valeur
+
+<!-- Pourquoi ce projet plutot qu'une alternative ? -->
+
+**Pour** [utilisateur cible]
+**Qui** [besoin/probleme]
+**Notre produit** [nom]
+**Est** [type de solution]
+**Qui** [benefice principal]
+**Contrairement a** [alternative existante]
+**Notre solution** [differentiation cle]
+
+## Scope
+
+### In scope (v1)
+
+-
+
+### Out of scope (v1)
+
+-
+
+### Contraintes
+
+| Contrainte | Description |
+|------------|-------------|
+| Technique | {{STACK}} |
+| Budget | |
+| Delai | |
+| Reglementaire | |

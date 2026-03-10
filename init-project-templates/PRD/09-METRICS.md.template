@@ -1,0 +1,43 @@
+# {{PROJECT_NAME}} — Metriques et KPIs
+
+> Derniere mise a jour : {{DATE}}
+
+---
+
+## Performance
+
+| Metrique | Cible | Actuel | Statut |
+|----------|-------|--------|--------|
+| Lighthouse Performance | > 90 | - | |
+| LCP (Largest Contentful Paint) | < 2.5s | - | |
+| FID (First Input Delay) | < 100ms | - | |
+| CLS (Cumulative Layout Shift) | < 0.1 | - | |
+| TTFB (Time to First Byte) | < 600ms | - | |
+
+## Qualite code
+
+| Metrique | Cible | Actuel | Statut |
+|----------|-------|--------|--------|
+| Couverture tests | > 80% | 0% | |
+| TypeScript strict errors | 0 | - | |
+| ESLint warnings | 0 | - | |
+| Dependances outdated | 0 | - | |
+
+## Usage (post-deploy)
+
+| Metrique | Cible | Actuel | Statut |
+|----------|-------|--------|--------|
+| Utilisateurs actifs / mois | | - | |
+| Pages vues / jour | | - | |
+| Taux de rebond | < 50% | - | |
+| Temps moyen session | | - | |
+
+## Business
+
+| Metrique | Cible | Actuel | Statut |
+|----------|-------|--------|--------|
+| | | | |
+
+---
+
+> **Note** : Ces metriques sont a mesurer regulierement et a mettre a jour apres chaque deploiement ou sprint review.

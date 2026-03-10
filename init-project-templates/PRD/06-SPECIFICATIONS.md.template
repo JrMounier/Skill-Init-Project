@@ -1,0 +1,82 @@
+# {{PROJECT_NAME}} — Specifications Techniques
+
+> Derniere mise a jour : {{DATE}}
+
+---
+
+## Architecture
+
+### Vue d'ensemble
+
+```
+[Diagramme architecture a completer]
+```
+
+### Stack technique
+
+| Couche | Technologie | Version | Role |
+|--------|-------------|---------|------|
+| **Frontend** | {{STACK}} | | |
+| **Backend** | | | |
+| **Database** | {{DATABASE}} | | |
+| **Infra** | Docker | | Conteneurisation |
+
+## Contrats API
+
+### Endpoints
+
+| Methode | Endpoint | Description | Auth |
+|---------|----------|-------------|------|
+| GET | /api/ | | |
+| POST | /api/ | | |
+
+### Exemple request/response
+
+```json
+// GET /api/example
+// Response 200
+{
+  "data": []
+}
+```
+
+## Modele de donnees
+
+### Entites principales
+
+```
+[Schema entites a completer]
+```
+
+### Relations
+
+| Entite A | Relation | Entite B |
+|----------|----------|----------|
+| | | |
+
+## Securite
+
+| Mesure | Implementation |
+|--------|----------------|
+| Authentification | |
+| Autorisation | |
+| Validation inputs | Zod |
+| CORS | |
+| Rate limiting | |
+
+## Infrastructure
+
+### Environnements
+
+| Env | URL | Description |
+|-----|-----|-------------|
+| Dev | http://localhost:{{PORT}} | Developpement local |
+| Staging | | Pre-production |
+| Production | | Production |
+
+### Variables d'environnement
+
+| Variable | Description | Requis |
+|----------|-------------|--------|
+| DATABASE_URL | URL de connexion BDD | Oui |
+| | | |

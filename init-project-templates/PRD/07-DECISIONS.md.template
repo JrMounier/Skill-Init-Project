@@ -1,0 +1,70 @@
+# {{PROJECT_NAME}} — Architecture Decision Records
+
+> Derniere mise a jour : {{DATE}}
+
+---
+
+## Index
+
+| ADR | Titre | Statut | Date |
+|-----|-------|--------|------|
+| ADR-001 | Choix de stack technique | Accepte | {{DATE}} |
+
+---
+
+## ADR-001 : Choix de stack technique
+
+**Date** : {{DATE}}
+**Statut** : Accepte
+
+### Contexte
+
+Le projet {{PROJECT_NAME}} necessite une stack technique adaptee a ses besoins : {{PROJECT_DESCRIPTION}}.
+
+### Options evaluees
+
+| Option | Avantages | Inconvenients |
+|--------|-----------|---------------|
+| {{STACK}} | Stack maitrisee, ecosystem riche | |
+| | | |
+
+### Decision
+
+Stack retenue : **{{STACK}}** avec **{{DATABASE}}**.
+
+### Consequences
+
+- Positives : coherence avec les autres projets du hub, capitalisation des connaissances
+- Negatives : [a evaluer]
+
+---
+
+## Template ADR
+
+<!--
+Pour ajouter une nouvelle decision, copier ce template :
+
+## ADR-XXX : [Titre]
+
+**Date** : YYYY-MM-DD
+**Statut** : Propose / Accepte / Deprecie / Remplace par ADR-YYY
+
+### Contexte
+[Quel est le probleme ou la contrainte ?]
+
+### Options evaluees
+| Option | Avantages | Inconvenients |
+|--------|-----------|---------------|
+| | | |
+
+### Decision
+[Quelle option a ete choisie et pourquoi ?]
+
+### Consequences
+- Positives : [...]
+- Negatives : [...]
+-->
+
+---
+
+> **Instruction Claude** : Apres chaque decision technique significative (choix de librairie, pattern architectural, changement d'approche), ajouter un ADR ici et mettre a jour l'index.

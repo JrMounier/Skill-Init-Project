@@ -1,0 +1,36 @@
+# {{PROJECT_NAME}} — PRD Index
+
+> Product Requirements Document — Navigation et etat du projet
+> Derniere mise a jour : {{DATE}}
+
+---
+
+## Documents
+
+| # | Document | Description | Statut |
+|---|----------|-------------|--------|
+| 01 | [VISION](./01-VISION.md) | Problem statement, objectifs, proposition de valeur | A completer |
+| 02 | [PERSONAS](./02-PERSONAS.md) | Utilisateurs cibles, scenarios d'usage | A completer |
+| 03 | [FEATURES](./03-FEATURES.md) | Inventaire fonctionnel avec statuts et priorites | A completer |
+| 04 | [BACKLOG](./04-BACKLOG.md) | Backlog priorise (MoSCoW) avec effort et statut | A completer |
+| 05 | [ROADMAP](./05-ROADMAP.md) | Phases, milestones, dependances | A completer |
+| 06 | [SPECIFICATIONS](./06-SPECIFICATIONS.md) | Architecture, APIs, modeles de donnees | A completer |
+| 07 | [DECISIONS](./07-DECISIONS.md) | Architecture Decision Records (ADR) | Actif |
+| 08 | [CHANGELOG](./08-CHANGELOG.md) | Journal des changements versionne | Actif |
+| 09 | [METRICS](./09-METRICS.md) | KPIs et metriques de suivi | A completer |
+
+## Etat du projet
+
+- **Phase actuelle** : Initialisation
+- **Version** : v0.1.0
+- **Derniere session** : {{DATE}}
+
+## Instructions Claude
+
+> **IMPORTANT** : Ces documents sont vivants. Regles de mise a jour :
+>
+> 1. Apres chaque commit significatif → MAJ `08-CHANGELOG.md`
+> 2. Apres chaque feature terminee → MAJ `03-FEATURES.md` (changer statut)
+> 3. Apres chaque decision technique → Ajouter ADR dans `07-DECISIONS.md`
+> 4. En debut de session → Consulter `00-INDEX.md` pour contexte
+> 5. Si nouveau document cree → MAJ Documentation Matrix dans CLAUDE.md
