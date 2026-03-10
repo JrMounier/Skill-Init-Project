@@ -1,0 +1,56 @@
+# {{PROJECT_NAME}} — Roadmap
+
+> Derniere mise a jour : {{DATE}}
+
+---
+
+## Vue d'ensemble
+
+```
+Phase 1 (MVP)          Phase 2 (v1)          Phase 3 (Evolution)
+───────────────        ───────────────       ───────────────
+[Features core]   →    [Ameliorations]  →    [Scale & Extras]
+```
+
+## Phase 1 — MVP
+
+**Objectif** : [Objectif principal de la phase]
+**Echeance** : [Date cible]
+
+| Milestone | Features | Statut | Date cible |
+|-----------|----------|--------|------------|
+| M1.1 | Setup projet + infra | | |
+| M1.2 | Features core | | |
+| M1.3 | Tests + polish | | |
+
+### Dependances
+
+- [ ] [Dependance 1]
+- [ ] [Dependance 2]
+
+## Phase 2 — v1.0
+
+**Objectif** : [Objectif]
+**Echeance** : [Date cible]
+
+| Milestone | Features | Statut | Date cible |
+|-----------|----------|--------|------------|
+| M2.1 | | | |
+| M2.2 | | | |
+
+## Phase 3 — Evolution
+
+**Objectif** : [Objectif]
+**Echeance** : [Date cible]
+
+| Milestone | Features | Statut | Date cible |
+|-----------|----------|--------|------------|
+| M3.1 | | | |
+
+---
+
+## Risques
+
+| Risque | Impact | Probabilite | Mitigation |
+|--------|--------|-------------|------------|
+| | Haut/Moyen/Bas | Haute/Moyenne/Basse | |

@@ -1,0 +1,46 @@
+# {{PROJECT_NAME}} — Inventaire Features
+
+> Derniere mise a jour : {{DATE}}
+
+---
+
+## Legende
+
+| Statut | Description |
+|--------|-------------|
+| `planned` | Prevue, non commencee |
+| `in-progress` | En cours de developpement |
+| `done` | Terminee et testee |
+| `deferred` | Reportee |
+
+| Priorite | Description |
+|----------|-------------|
+| **Must** | Indispensable pour le MVP |
+| **Should** | Important mais pas bloquant |
+| **Could** | Souhaitable si temps disponible |
+| **Won't** | Pas dans cette version |
+
+---
+
+## Features
+
+| ID | Feature | Priorite | Statut | Sprint/Phase | Doc |
+|----|---------|----------|--------|-------------|-----|
+| F-001 | | Must | planned | | |
+| F-002 | | Must | planned | | |
+| F-003 | | Should | planned | | |
+| F-004 | | Could | planned | | |
+
+## Statistiques
+
+| Statut | Count |
+|--------|-------|
+| Planned | 0 |
+| In Progress | 0 |
+| Done | 0 |
+| Deferred | 0 |
+| **Total** | **0** |
+
+---
+
+> **Instruction Claude** : Apres chaque feature terminee, mettre a jour le statut dans ce tableau et incrementer les statistiques.

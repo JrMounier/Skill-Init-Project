@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"[scope-check] Modification dans le projet {{PROJECT_NAME}} — verifiez que le fichier cible appartient bien a ce projet.\"",
+            "timeout": 5000
+          }
+        ]
+      }
+    ]
+  }
+}
