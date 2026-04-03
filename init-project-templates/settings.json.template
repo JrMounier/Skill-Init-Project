@@ -1,3 +1,26 @@
+{{#IF_HUB}}
+{
+  "permissions": {
+    "additionalDirectories": ["{{HUB_PATH}}"]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python {{HUB_PATH}}/_shared/hooks/scope_check.py {{PROJECT_NAME}}",
+            "timeout": 5000
+          }
+        ]
+      }
+    ]
+  }
+}
+{{/IF_HUB}}
+
+{{#IF_STANDALONE}}
 {
   "hooks": {
     "PreToolUse": [
@@ -14,3 +37,4 @@
     ]
   }
 }
+{{/IF_STANDALONE}}
