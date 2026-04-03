@@ -1,0 +1,168 @@
+{{#IF_NEXTJS}}
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import { FlatCompat } from "@eslint/eslintrc";
+import jsdoc from "eslint-plugin-jsdoc";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+});
+
+const eslintConfig = [
+  ...compat.extends("next/core-web-vitals"),
+  {
+    plugins: { jsdoc },
+    files: ["src/**/*.ts", "src/**/*.tsx"],
+    rules: {
+      "jsdoc/require-jsdoc": ["warn", {
+        require: {
+          FunctionDeclaration: true,
+          MethodDefinition: false,
+          ClassDeclaration: true,
+        },
+        contexts: [
+          "ExportNamedDeclaration > FunctionDeclaration",
+          "ExportNamedDeclaration > ClassDeclaration",
+          "ExportDefaultDeclaration > FunctionDeclaration",
+          "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > ArrowFunctionExpression",
+          "ExportNamedDeclaration > TSInterfaceDeclaration",
+          "ExportNamedDeclaration > TSTypeAliasDeclaration",
+        ],
+        checkConstructors: false,
+      }],
+      "jsdoc/require-param-description": "warn",
+      "jsdoc/require-returns-description": "warn",
+      "jsdoc/check-param-names": ["error", { checkDestructured: false }],
+      "jsdoc/no-types": "warn",
+      "jsdoc/check-tag-names": "warn",
+    },
+  },
+];
+
+export default eslintConfig;
+{{/IF_NEXTJS}}
+
+{{#IF_SVELTEKIT}}
+import jsdoc from "eslint-plugin-jsdoc";
+import js from "@eslint/js";
+import ts from "typescript-eslint";
+import svelte from "eslint-plugin-svelte";
+
+const eslintConfig = [
+  js.configs.recommended,
+  ...ts.configs.recommended,
+  ...svelte.configs["flat/recommended"],
+  {
+    plugins: { jsdoc },
+    files: ["src/**/*.ts", "src/**/*.svelte"],
+    rules: {
+      "jsdoc/require-jsdoc": ["warn", {
+        require: {
+          FunctionDeclaration: true,
+          MethodDefinition: false,
+          ClassDeclaration: true,
+        },
+        contexts: [
+          "ExportNamedDeclaration > FunctionDeclaration",
+          "ExportNamedDeclaration > ClassDeclaration",
+          "ExportDefaultDeclaration > FunctionDeclaration",
+          "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > ArrowFunctionExpression",
+          "ExportNamedDeclaration > TSInterfaceDeclaration",
+          "ExportNamedDeclaration > TSTypeAliasDeclaration",
+        ],
+        checkConstructors: false,
+      }],
+      "jsdoc/require-param-description": "warn",
+      "jsdoc/require-returns-description": "warn",
+      "jsdoc/check-param-names": ["error", { checkDestructured: false }],
+      "jsdoc/no-types": "warn",
+      "jsdoc/check-tag-names": "warn",
+    },
+  },
+];
+
+export default eslintConfig;
+{{/IF_SVELTEKIT}}
+
+{{#IF_ASTRO}}
+import jsdoc from "eslint-plugin-jsdoc";
+import js from "@eslint/js";
+import ts from "typescript-eslint";
+
+const eslintConfig = [
+  js.configs.recommended,
+  ...ts.configs.recommended,
+  {
+    plugins: { jsdoc },
+    files: ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro"],
+    rules: {
+      "jsdoc/require-jsdoc": ["warn", {
+        require: {
+          FunctionDeclaration: true,
+          MethodDefinition: false,
+          ClassDeclaration: true,
+        },
+        contexts: [
+          "ExportNamedDeclaration > FunctionDeclaration",
+          "ExportNamedDeclaration > ClassDeclaration",
+          "ExportDefaultDeclaration > FunctionDeclaration",
+          "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > ArrowFunctionExpression",
+          "ExportNamedDeclaration > TSInterfaceDeclaration",
+          "ExportNamedDeclaration > TSTypeAliasDeclaration",
+        ],
+        checkConstructors: false,
+      }],
+      "jsdoc/require-param-description": "warn",
+      "jsdoc/require-returns-description": "warn",
+      "jsdoc/check-param-names": ["error", { checkDestructured: false }],
+      "jsdoc/no-types": "warn",
+      "jsdoc/check-tag-names": "warn",
+    },
+  },
+];
+
+export default eslintConfig;
+{{/IF_ASTRO}}
+
+{{#IF_NODE_API}}
+import jsdoc from "eslint-plugin-jsdoc";
+import js from "@eslint/js";
+import ts from "typescript-eslint";
+
+const eslintConfig = [
+  js.configs.recommended,
+  ...ts.configs.recommended,
+  {
+    plugins: { jsdoc },
+    files: ["src/**/*.ts"],
+    rules: {
+      "jsdoc/require-jsdoc": ["warn", {
+        require: {
+          FunctionDeclaration: true,
+          MethodDefinition: false,
+          ClassDeclaration: true,
+        },
+        contexts: [
+          "ExportNamedDeclaration > FunctionDeclaration",
+          "ExportNamedDeclaration > ClassDeclaration",
+          "ExportDefaultDeclaration > FunctionDeclaration",
+          "ExportNamedDeclaration > VariableDeclaration > VariableDeclarator > ArrowFunctionExpression",
+          "ExportNamedDeclaration > TSInterfaceDeclaration",
+          "ExportNamedDeclaration > TSTypeAliasDeclaration",
+        ],
+        checkConstructors: false,
+      }],
+      "jsdoc/require-param-description": "warn",
+      "jsdoc/require-returns-description": "warn",
+      "jsdoc/check-param-names": ["error", { checkDestructured: false }],
+      "jsdoc/no-types": "warn",
+      "jsdoc/check-tag-names": "warn",
+    },
+  },
+];
+
+export default eslintConfig;
+{{/IF_NODE_API}}
