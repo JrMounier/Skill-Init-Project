@@ -17,8 +17,8 @@
 
 - Branches : depuis main, nommage feat/fix/refactor/docs
 - Commits : format conventionnel type(scope): description
-- PRD : 10 docs dans docs/PRD/, MAJ obligatoire apres chaque feature/decision
-- Feature docs : dans docs/features/
+- PRD : 10 docs dans docs/prd/, MAJ obligatoire apres chaque feature/decision
+- ADR : dans docs/adr/, format MADR, numerotation sequentielle
 
 ## Pieges connus
 
@@ -33,5 +33,5 @@
 ## Liens docs
 
 - CLAUDE.md : `./CLAUDE.md`
-- PRD : `./docs/PRD/`
-- Features : `./docs/features/`
+- PRD : `./docs/prd/`
+- ADR : `./docs/adr/`
