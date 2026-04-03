@@ -19,6 +19,11 @@ Deux environnements (detection automatique) :
 - **Mode Hub** : Infrastructure partagee detectee — hooks, agents, MCP, hookify depuis le hub
 - **Mode Standalone** : Projet autonome sans dependance externe
 
+## Regles d'interaction
+
+> **OBLIGATOIRE** : Pour TOUTE question posee a l'utilisateur dans ce workflow (choix de mode, nom du projet, stack, options, validation de pre-remplissage, archivage), utiliser l'outil **AskUserQuestion** avec des options cliquables. Ne JAMAIS poser de question en texte libre conversationnel. L'utilisateur doit pouvoir repondre en cliquant, pas en tapant.
+> Exception : si la question necessite une saisie libre (ex: nom du projet, description), utiliser AskUserQuestion avec le champ texte "Other".
+
 ## Declenchement
 
 ```
@@ -808,17 +813,17 @@ Si `docs/marketing-context.md` existe deja, **ne pas ecraser**. Afficher : `[SKI
 - Proposer un commit : `docs: initialize project documentation`
 - Attendre confirmation utilisateur avant de committer
 
-### Etape 8b — Archivage des sources pre-remplissage (mode bootstrap uniquement)
+### Etape 8b — Archivage de la documentation pre-existante (mode bootstrap uniquement)
 
-> Cette etape n'est executee qu'en mode `bootstrap` et uniquement si du pre-remplissage a eu lieu (etape 0.6).
-> En mode `new`, cette etape est ignoree (aucune source a archiver).
+> Cette etape n'est executee qu'en mode `bootstrap`.
+> En mode `new`, cette etape est ignoree (aucune documentation pre-existante).
 
-**Objectif** : Apres restructuration de la documentation dans les nouveaux PRD/ADR, les fichiers sources
-epars n'ont plus lieu d'etre dans l'arborescence de travail. Les archiver evite la confusion entre
-ancienne et nouvelle documentation.
+**Objectif** : Apres restructuration de la documentation dans la nouvelle arborescence (`docs/prd/`, `docs/adr/`, `docs/guides/`, `docs/assets/`), les fichiers de documentation pre-existants qui ne font pas partie de cette structure n'ont plus lieu d'etre dans l'arborescence de travail. Les archiver evite la confusion entre ancienne et nouvelle documentation.
 
-**Fichiers eligibles a l'archivage** : Uniquement les fichiers de documentation qui ont ete utilises
-comme source de pre-remplissage (etape 0.6) et dont le contenu a ete absorbe dans les nouveaux fichiers.
+**Fichiers eligibles a l'archivage** : Tout fichier Markdown ou document dans `docs/` qui ne fait PAS partie de la nouvelle structure standardisee. Cela inclut :
+- Les fichiers utilises comme source de pre-remplissage (etape 0.6)
+- Les fichiers de documentation anciens, epars ou non structures (ex: `docs/production-deployment-plan.md`, `docs/PRD-legacy.md`, `docs/Phase1-specs.md`)
+- Les fichiers dont le contenu a ete absorbe dans les nouveaux PRD/ADR
 
 **Fichiers JAMAIS archives** (exclusions absolues) :
 - `CLAUDE.md` — fichier central, enrichi mais jamais archive
@@ -827,13 +832,15 @@ comme source de pre-remplissage (etape 0.6) et dont le contenu a ete absorbe dan
 - `package.json`, `tsconfig.json` — fichiers techniques actifs
 - `docker-compose.yml`, `compose.yml` — infrastructure active
 - Tout fichier en dehors de `docs/` — seule la documentation est concernee
-- Tout fichier dans `docs/prd/`, `docs/adr/`, `docs/guides/`, `docs/assets/` — ce sont les nouveaux fichiers
+- Tout fichier dans `docs/prd/`, `docs/adr/`, `docs/guides/`, `docs/assets/` — ce sont les nouveaux fichiers de la structure standardisee
 
 **Processus** :
 
-1. **Lister** les fichiers source utilises depuis le `prefill_registry` (etape 0.6)
-2. **Filtrer** en excluant les fichiers proteges ci-dessus
-3. **Presenter** la liste a l'utilisateur pour validation :
+1. **Scanner** le repertoire `docs/` pour identifier les fichiers qui ne font pas partie de la structure standardisee (`docs/prd/`, `docs/adr/`, `docs/guides/`, `docs/assets/`)
+2. **Ajouter** les fichiers utilises comme source de pre-remplissage (depuis le `prefill_registry`, etape 0.6) s'ils ne sont pas deja dans la liste
+3. **Filtrer** en excluant les fichiers proteges ci-dessus
+4. **Si aucun fichier eligible** : afficher `[SKIP] Aucun fichier a archiver — la documentation est deja structuree` et passer a l'etape suivante
+5. **Presenter** la liste a l'utilisateur pour validation :
 
 ```
 ## Archivage des documents restructures
@@ -858,15 +865,86 @@ Archiver ces fichiers ?
 - Non : conserver en l'etat
 ```
 
-4. **Si Oui** :
+6. **Si Oui** :
    - Creer le repertoire `_archive_pre-init/` a la racine du projet
-   - Deplacer chaque fichier eligible (conserver l'arborescence relative : `docs/PRD-legacy.md` → `_archive_pre-init/docs/PRD-legacy.md`)
+   - Deplacer chaque fichier eligible (conserver l'arborescence relative : `docs/production-deployment-plan.md` → `_archive_pre-init/docs/production-deployment-plan.md`)
    - Afficher : `[ARCHIVE] X fichier(s) deplaces dans _archive_pre-init/`
    - Ajouter `_archive_pre-init/` au `.gitignore` si ce n'est pas deja le cas
-5. **Si Non** : ne rien faire, afficher : `[SKIP] Archivage ignore — les fichiers sources restent en place`
+7. **Si Non** : ne rien faire, afficher : `[SKIP] Archivage ignore — les fichiers restent en place`
 
 > **Regle** : L'archivage est toujours propose, jamais impose. L'utilisateur garde le controle total.
 > Les fichiers ne sont pas supprimes — ils sont deplaces dans un repertoire d'archive accessible.
+
+### Etape 8c — Allegement du CLAUDE.md (mode bootstrap uniquement)
+
+> Cette etape n'est executee qu'en mode `bootstrap` et uniquement si le CLAUDE.md existant contient
+> des sections dont le contenu a ete restructure dans les fichiers PRD.
+> En mode `new`, cette etape est ignoree (CLAUDE.md genere directement dans le bon format).
+
+**Objectif** : Eviter la duplication entre le CLAUDE.md et les PRD. Apres restructuration, le CLAUDE.md
+doit rester le document technique de reference (stack, commandes, infrastructure, conventions, matrice
+documentaire) mais ne doit plus contenir les informations desormais portees par les PRD.
+
+**Processus** :
+
+1. **Analyser** le CLAUDE.md existant pour identifier les sections dont le contenu a ete migre vers un PRD :
+
+| Contenu dans CLAUDE.md | Desormais dans | Action |
+|-------------------------|----------------|--------|
+| Personas, profils utilisateurs | `docs/prd/02-PERSONAS.md` | Supprimer du CLAUDE.md |
+| Liste de features, fonctionnalites | `docs/prd/03-FEATURES.md` | Supprimer du CLAUDE.md |
+| Backlog, taches a faire | `docs/prd/04-BACKLOG.md` | Supprimer du CLAUDE.md |
+| Phases, roadmap, jalons | `docs/prd/05-ROADMAP.md` | Supprimer du CLAUDE.md |
+| Decisions techniques (si migrees en ADR) | `docs/adr/ADR-*.md` | Supprimer du CLAUDE.md |
+| KPIs, metriques | `docs/prd/09-METRICS.md` | Supprimer du CLAUDE.md |
+
+**Sections a CONSERVER dans le CLAUDE.md** (jamais supprimees) :
+- Matrice documentaire (reference centrale)
+- Standards de Documentation (conventions code)
+- Stack technique et versions (reference rapide pour Claude)
+- Infrastructure et environnement (Docker, ports, services)
+- Structure du projet (arborescence)
+- Variables d'environnement (reference rapide)
+- Commandes utiles (reference rapide)
+- Conventions Git
+- Etat actuel et historique des sessions
+- Ressources Partagees Hub (si mode hub)
+
+2. **Presenter** les modifications proposees a l'utilisateur :
+
+```
+## Allegement du CLAUDE.md
+
+Les contenus suivants ont ete restructures dans les PRD et peuvent etre retires du CLAUDE.md :
+
+| Section CLAUDE.md | Migre vers | Lignes concernees |
+|-------------------|------------|-------------------|
+| Decisions techniques (section 9) | docs/adr/ADR-001 a ADR-004 | L200-L280 |
+| Liste features | docs/prd/03-FEATURES.md | L150-L180 |
+
+Chaque section supprimee sera remplacee par une reference vers le document PRD correspondant :
+> Voir `docs/prd/03-FEATURES.md` pour l'inventaire fonctionnel complet.
+
+La matrice documentaire dans CLAUDE.md assure la tracabilite de chaque document.
+
+Proceder a l'allegement ?
+- Oui : alleger le CLAUDE.md et ajouter les references
+- Non : conserver le CLAUDE.md en l'etat (duplication acceptee)
+```
+
+3. **Si Oui** :
+   - Pour chaque section identifiee, remplacer le contenu par une reference concise :
+     ```markdown
+     > Contenu migre vers `docs/prd/XX-NOM.md` — consulter la [matrice documentaire](#matrice-documentaire) pour la reference complete.
+     ```
+   - Verifier que la matrice documentaire dans CLAUDE.md reference bien chaque document PRD/ADR avec son emplacement et ses regles de mise a jour
+   - Afficher : `[ALLEGE] CLAUDE.md — X section(s) remplacees par des references PRD/ADR`
+
+4. **Si Non** : ne rien faire, afficher : `[SKIP] CLAUDE.md conserve en l'etat`
+
+> **Regle** : Ne jamais supprimer une information sans s'assurer qu'elle est tracee dans la matrice
+> documentaire et accessible via le document PRD/ADR correspondant. La matrice documentaire est le
+> garant de la tracabilite : chaque contenu deplace doit y etre referencable.
 
 ### Etape 9 — Verification
 
@@ -902,7 +980,9 @@ Executer la checklist suivante et afficher le resultat :
 
 **Checks conditionnels bootstrap** :
 ```
-[x/X] Archivage sources pre-remplissage — effectue / ignore / non applicable
+[x/X] Archivage documentation pre-existante — effectue / ignore / non applicable
+[x/X] Allegement CLAUDE.md — effectue / ignore / non applicable
+[x/X] Matrice documentaire — tracabilite complete (chaque contenu migre est reference)
 ```
 
 ### Etape 10 — Rapport de fin d'execution
@@ -935,11 +1015,13 @@ Generer un rapport structure en 3 sections et l'afficher a l'utilisateur :
 | Marketing context | Cree / Existe / Non demande | docs/marketing-context.md |
 | .gitignore | Cree / Existe | |
 | Git commit | Oui / Non | [message] |
-| Archivage sources (bootstrap) | Effectue / Ignore / N/A | X fichiers dans _archive_pre-init/ |
+| Archivage docs (bootstrap) | Effectue / Ignore / N/A | X fichiers dans _archive_pre-init/ |
+| Allegement CLAUDE.md (bootstrap) | Effectue / Ignore / N/A | X sections remplacees par references |
 
 **Fichiers crees** : X
 **Fichiers ignores (existants)** : Y
 **Fichiers archives** : Z (dans `_archive_pre-init/`)
+**Sections CLAUDE.md allegees** : W (remplacees par references PRD/ADR)
 ```
 
 #### Section 2 — Environnement du projet
